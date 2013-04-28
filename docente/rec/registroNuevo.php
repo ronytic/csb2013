@@ -1,0 +1,36 @@
+<?php
+include_once("../login/check.php");
+if(!empty($_POST)){
+	include_once("../db.php");
+	$paterno=mb_strtolower($_POST['paterno']);
+	$materno=mb_strtolower($_POST['materno']);
+	$nombres=mb_strtolower($_POST['nombres']);
+	$sexo=$_POST['sexo'];
+	$fechaNac=$_POST['fechanac'];
+	$departamento=$_POST['departamento'];
+	$provincia=$_POST['provincia'];
+	$email=$_POST['email'];
+	$direccion=$_POST['direccion'];
+	$telefono=$_POST['telefono'];
+	$celular=$_POST['celular'];
+	$estadoCivil=$_POST['estadocivil'];
+	$DPdepartamento=$_POST['DPdepartamento'];
+	$DPuniversidad=$_POST['DPuniversidad'];
+	$DPanoingreso=$_POST['DPanoingreso'];
+	$DPanoegreso=$_POST['DPanoegreso'];
+	$DPanotitulacion=$_POST['DPanotitulacion'];
+	$DPtitulo=$_POST['DPtitulo'];
+	$DTcargo=$_POST['DTcargo'];
+	$DTcargahoraria=$_POST['DTcargahoraria'];
+	$DTantiguedad=$_POST['DTantiguedad'];
+	$DTcategoria=$_POST['DTcategoria'];
+	$observacion=$_POST['observaciones'];
+	$fechaReg=date("Y-m-d");
+	$horaReg=date("H:i:s");
+	$link=connect();
+	$sql="INSERT INTO docente VALUES(NULL,'$paterno','$materno','$nombres','$sexo','$fechaNac','$departamento','$provincia','$email','$direccion','$telefono','$celular','$estadoCivil','$DPdepartamento','$DPuniversidad','$DPanoingreso','$DPanoegreso','$DPanotitulacion','$DPtitulo','$DTcargo','$DTcargahoraria','$DTantiguedad','$DTcategoria','','$observacion','$fechaReg','$horaReg')";
+	mysql_query($sql);
+	mysql_close($link);
+	header("Location: listarDocentes.php");
+}
+?>

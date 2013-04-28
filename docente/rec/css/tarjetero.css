@@ -1,0 +1,47 @@
+/** Start Form CodBarra **/
+#tarjetero{
+	background-color:#FFF;
+
+	text-align:center;
+	-webkit-box-shadow:1px 1px 1px rgb(0,0,0)
+}
+#tarjetero label{
+	color:#CCC;
+	font-size:15pt;
+	margin:20px;
+}
+#tarjetero input[type=text],#tarjetero input[type=password]{
+	margin:10px;
+	padding:10px;
+	font-size:30pt;
+	width:160px;
+	border:#CCC 1px solid;
+	-webkit-box-shadow:1px 1px 1px rgb(0,0,0)
+}
+#tarjetero input[type=submit]{
+	padding:10px;
+	font-weight:bolder;
+}
+/** End Form CodBarra **/
+#presentes{
+background-color:#CCCCCC;
+color:#FFFFFF;
+font-size:8pt;
+
+}
+#hora{
+	font-size:130pt;
+	text-align:center;	
+	background-color:#F0F9EE;
+}
+#turno{
+	text-align:center;
+	color:#003366;
+	font-weight:bold;
+	font-size:30pt;
+}
+.roojo
+{
+	background-color:#F00;
+	color:#FFF;
+	}

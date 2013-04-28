@@ -1,0 +1,27 @@
+<?php
+include_once("../../login/check.php");
+include_once("../../class/agenda.php");
+if(!empty($_POST)){
+	$agenda=new agenda;
+	$fecha=date("Y-m-d");
+	$hora=date("H:i:s");
+	$CodUsuario=$_SESSION['CodDocente'];
+	$fechaRegistro=date("Y-m-d",strtotime($_POST['Fecha']));
+	$agendaValues=array(
+				"CodAgenda"=>'NULL',
+				'CodCurso'=>$_POST['CodCurso'],
+				'CodAlumno'=>$_POST['CodAlumno'],
+				'CodMateria'=>$_POST['CodMateria'],
+				'CodObservacion'=>$_POST['CodObs'],
+				'Fecha'=>"'$fechaRegistro'",
+				'FechaRegistro'=>"'$fecha'",
+				'HoraRegistro'=>"'$hora'",
+				'Detalle'=>"'{$_POST['Detalle']}'",
+				'CodUsuario'=>$CodUsuario,
+				'Resaltar'=>$_POST['Citacion'],
+				'Visible'=>1
+		);
+		$agenda->insertarRegistro($agendaValues);
+		//print_r($agendaValues);
+}
+?>
