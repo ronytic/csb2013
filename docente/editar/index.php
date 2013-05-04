@@ -1,6 +1,6 @@
 <?php
 include_once '../../login/check.php';
-$titulo="Editar datos del docente";
+$titulo="Modificar datos del docente";
 $folder="../../";
 $uno=2;
 $jsFile="docente/editar.js";

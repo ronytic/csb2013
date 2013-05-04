@@ -92,7 +92,7 @@ if(!empty($_GET) && isset($_GET['mf']) && $_GET['mf']==md5("lock")){
 		$regNotas=array_shift($regNotas);
 		$sumanotas+=$regNotas['NotaFinal'];
 		//Segundo Bimestre
-		if($trimestre>=1){
+		if($trimestre>=2){
 			/*$pdf->SetXY($boletin4x+95,$boletin4y+80+$i);
 			$pdf->Cell(6,4,$regNotas['Resultado'],$bordeC,0,"R");//Nota
 			//$pdf->Cell(6,4,"00",$bordeC,0,"R");
@@ -112,7 +112,7 @@ if(!empty($_GET) && isset($_GET['mf']) && $_GET['mf']==md5("lock")){
 		$regNotas=array_shift($regNotas);
 		$sumanotas+=$regNotas['NotaFinal'];
 		///Tercer Bimestre
-		if($trimestre>=1){
+		if($trimestre>=3){
 			/*$pdf->SetXY($boletin4x+127,$boletin4y+80+$i);
 			$pdf->Cell(6,4,$regNotas['Resultado'],$bordeC,0,"R");//Nota
 			//$pdf->Cell(6,4,"00",$bordeC,0,"R");
@@ -132,7 +132,7 @@ if(!empty($_GET) && isset($_GET['mf']) && $_GET['mf']==md5("lock")){
 		$regNotas=array_shift($regNotas);
 		$sumanotas+=$regNotas['NotaFinal'];
 		///Cuarto Bimestre
-		if($trimestre>=1){
+		if($trimestre>=4){
 			/*$pdf->SetXY($boletin4x+127,$boletin4y+80+$i);
 			$pdf->Cell(6,4,$regNotas['Resultado'],$bordeC,0,"R");//Nota
 			//$pdf->Cell(6,4,"00",$bordeC,0,"R");
