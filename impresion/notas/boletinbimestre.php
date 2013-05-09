@@ -10,6 +10,13 @@ if(!empty($_GET) && isset($_GET['mf']) && $_GET['mf']==md5("lock")){
 	include_once("../../class/materias.php");
 	include_once("../../class/casilleros.php");
 	include_once("../../class/registronotas.php");
+	
+	include_once("../../class/observaciones.php");
+	include_once("../../class/agenda.php");
+	
+	$observaciones=new observaciones;
+	$agenda=new agenda;
+	
 	include_once("../fpdf.php");
 	$alumno=new alumno;
 	$curso=new curso;
@@ -169,6 +176,85 @@ if(!empty($_GET) && isset($_GET['mf']) && $_GET['mf']==md5("lock")){
 		}
 		$i+=4;//Salto para abajo
 	}
+	/************************INICIO*******************/
+		//Cantidad de Observaciones
+		$CodAl=$CodAlumno;
+	$CodObser=$observaciones->CodObservaciones(1);
+	foreach($CodObser as $CodO){$Obser[]=$CodO['CodObservacion'];}
+	$CodigosObservaciones=implode(",",$Obser);
+	$CantObser=$agenda->CantidadObservaciones($CodAl,$CodigosObservaciones);
+	$CantObser=array_shift($CantObser);
+		//Cantidad de Faltas
+	$Obser=array();
+	$CodObser=$observaciones->CodObservaciones(2);
+	foreach($CodObser as $CodO){$Obser[]=$CodO['CodObservacion'];}
+	$CodigosObservaciones=implode(",",$Obser);
+	$CantFaltas=$agenda->CantidadObservaciones($CodAl,$CodigosObservaciones);
+	$CantFaltas=array_shift($CantFaltas);
+	//Cantidad de Atrasos
+	$Obser=array();
+	$CodObser=$observaciones->CodObservaciones(3);
+	foreach($CodObser as $CodO){$Obser[]=$CodO['CodObservacion'];}
+	$CodigosObservaciones=implode(",",$Obser);
+	$CantAtrasos=$agenda->CantidadObservaciones($CodAl,$CodigosObservaciones);
+	$CantAtrasos=array_shift($CantAtrasos);
+	//Cantidad de Licencias
+	$Obser=array();
+	$CodObser=$observaciones->CodObservaciones(4);
+	foreach($CodObser as $CodO){$Obser[]=$CodO['CodObservacion'];}
+	$CodigosObservaciones=implode(",",$Obser);
+	$CantLicencias=$agenda->CantidadObservaciones($CodAl,$CodigosObservaciones);
+	$CantLicencias=array_shift($CantLicencias);
+	//Cantidad de Felicitaciones
+	$Obser=array();
+	$CodObser=$observaciones->CodObservaciones(5);
+	foreach($CodObser as $CodO){$Obser[]=$CodO['CodObservacion'];}
+	$CodigosObservaciones=implode(",",$Obser);
+	$CantNotificacion=$agenda->CantidadObservaciones($CodAl,$CodigosObservaciones);
+	$CantNotificacion=array_shift($CantNotificacion);
+	//Cantidad de No contestan
+	$Obser=array();
+	$CodObser=$observaciones->CodObservaciones(6);
+	foreach($CodObser as $CodO){$Obser[]=$CodO['CodObservacion'];}
+	$CodigosObservaciones=implode(",",$Obser);
+	$CantNoContestan=$agenda->CantidadObservaciones($CodAl,$CodigosObservaciones);
+	$CantNoContestan=array_shift($CantNoContestan);
+	//Cantidad de Felicitaciones
+	$Obser=array();
+	$CodObser=$observaciones->CodObservaciones(7);
+	foreach($CodObser as $CodO){$Obser[]=$CodO['CodObservacion'];}
+	$CodigosObservaciones=implode(",",$Obser);
+	$CantFelicitacion=$agenda->CantidadObservaciones($CodAl,$CodigosObservaciones);
+	$CantFelicitacion=array_shift($CantFelicitacion);
+	$Total=$CantObser['Cantidad']+$CantFaltas['Cantidad']+$CantAtrasos['Cantidad']+$CantLicencias['Cantidad']+$CantNotificacion['Cantidad']+$CantNoContestan['Cantidad']+$CantFelicitacion['Cantidad'];
+	/********************FIN DE AGENDA****************/
+	$pdf->SetXY(15,160);
+	$pdf->Cell(150,5,"Estadisticas de la Agenda:",0,1);
+	$pdf->SetX(15);
+	$pdf->Cell(30,5,"Observaciones",1,0,"C");
+	$pdf->Cell(15,5,"Faltas",1,0,"C");
+	$pdf->Cell(15,5,"Atrasos",1,0,"C");
+	$pdf->Cell(20,5,"Licencias",1,0,"C");
+	
+	$pdf->Cell(35,5,utf8_decode("Notificación Padres"),1,0,"C");
+	$pdf->SetFont("Arial","",8);
+	$pdf->Cell(25,5,"No Responde Telf",1,0,"C");
+	$pdf->SetFont("Arial","",11);
+	$pdf->Cell(30,5,"Felicitaciones",1,0,"C");
+	$pdf->Cell(15,5,"Total",1,0,"C");
+	$pdf->Ln();
+	$pdf->SetX(15);
+	$pdf->Cell(30,5,$CantObser['Cantidad'],1,0,"C");
+	$pdf->Cell(15,5,$CantFaltas['Cantidad'],1,0,"C");
+	$pdf->Cell(15,5,$CantAtrasos['Cantidad'],1,0,"C");
+	$pdf->Cell(20,5,$CantLicencias['Cantidad'],1,0,"C");
+	$pdf->Cell(35,5,$CantNotificacion['Cantidad'],1,0,"C");
+	$pdf->Cell(25,5,$CantNoContestan['Cantidad'],1,0,"C");
+	$pdf->Cell(30,5,$CantFelicitacion['Cantidad'],1,0,"C");
+	$pdf->Cell(15,5,$Total,1,0,"C");
+	$pdf->Ln();
+	$pdf->SetX(15);
+	$pdf->Cell(150,5,"Se les insinua revisar constantemente las observaciones por Internet",0,1);
 	$pdf->Output();
 }
 ?>
