@@ -49,7 +49,7 @@ if(!empty($_POST)){
 	if(count($casillas)<=0){?><span class="resaltar">No Existe Casilleros Registrados para este Docente, Curso, Materia y Trimestre</span><?php exit();}
 	?>
     <!--<div style="display:inline-block;">-->
-    <div class="cuerpo">Curso: <span class="resaltar"><?php echo $cur['Nombre']?> </span> | Materia: <span class="resaltar"><?php echo $mat['Nombre']?></span> | Trimestre: <span class="resaltar"><?php echo $CodTrimestre?></span> | Nota de Califcación: <span class="resaltar"><?php echo $cur['NotaTope']?></span> | Nota Reprobación: <span class="resaltar"><?php echo $cur['NotaAprobacion']?></span>
+    <div class="cuerpo">Curso: <span class="resaltar"><?php echo $cur['Nombre']?> </span> | Materia: <span class="resaltar"><?php echo $mat['Nombre']?></span> | Trimestre: <span class="resaltar"><?php echo $CodTrimestre?></span> | Nota de Califcación: <span class="resaltar"><?php echo $cur['NotaTope']?></span> | Nota Aprobación: <span class="resaltar"><?php echo $cur['NotaAprobacion']?></span>
     <input type="hidden" name="NotaAprobacion" value="<?php echo $cur['NotaAprobacion']?>"/>
     </div>
 	<table class="tabla" style="display:inline-block;overflow-x:visible; margin-bottom:36px;vertical-align:top">
